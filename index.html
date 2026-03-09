@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+
+
+body{
+
+
+
+
+
+
+
+
+font-weight:600;
+font-family: "Goudy Bookletter 1911", poppins;
+margin:0;
+padding:20px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow-y:auto;
+
+
+
+background: linear-gradient(-95deg, #00c6ff, #0072ff, #00ff87, #60efff);
+background-size: 400% 400%;
+animation: gradientBG 10s ease infinite;
+
+}
+@keyframes gradientBG{
+0%{
+background-position:0% 50%;
+}
+50%{
+background-position:100% 50%;
+}
+100%{
+background-position:0% 50%;
+}
+}
+
+
+
+
+
+.container{
+
+
+width:400px;
+max-width:90%;
+padding:20px;
+border-radius:10px;
+border:none;
+background:rgba(255,255,255,0.15);
+backdrop-filter: blur(10px);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
+
+}
+.container .inp{
+ outline: none;
+padding:15px;
+border-radius:15px;
+border:none;
+box-shadow:4px 5px 6px;
+}
+
+.container .btn{
+padding:15px;
+border:none;
+background:blue;
+border-radius:5px;
+box-shadow:4px 5px 6px;
+
+}
+
+
+ .btn:hover{
+background-color:transparent;
+
+border:1px solid black;
+
+}
+
+
+
+
+
+.container h1{
+
+
+text-align:center;
+
+}
+
+
+.container .data{
+
+
+display:flex;
+justify-content:center;
+
+gap:10px;
+margin-bottom:10px;
+}
+
+#showdata{
+
+display:flex;
+justify-content:center;
+flex-direction:column;
+align-items:center;
+gap:20px;
+
+}
+#showdata li{
+list-style:none;
+align-items:center;
+display:flex;
+justify-content:space-around;
+padding:18px;
+border:1px solid white;
+margin-bottom:10px;
+gap:10px;
+}
+
+
+button{
+background:blue;
+color:yellow;
+}
+
+
+
+.btn1{
+
+background-color:red;
+padding:6px;
+border-radius:5px;
+border:1px solid white;
+}
+
+.btn1:hover{
+
+background-color:transparent;
+
+border:1px solid black;
+}
+
+
+.btn2{
+
+background-color:green;
+padding:6px;
+border-radius:5px;
+border:1px solid white;
+}
+
+.btn2:hover{
+
+background-color:transparent;
+
+border:1px solid black;
+}
+
+
+
+.btn3{
+
+background-color:gray;
+padding:6px;
+border-radius:5px;
+border:1px solid white;
+}
+
+
+.btn3:hover{
+
+background-color:transparent;
+
+border:1px solid black;
+}
+
+
+
+
+
+
+@media (max-width:768px){
+
+.container{
+width:90%;
+padding:15px;
+}
+
+.data{
+flex-direction:row;
+align-items:center;
+}
+
+.container .inp{
+width:90%;
+}
+
+.container .btn{
+width:95%;
+}
+
+#showdata li{
+flex-direction:column;
+gap:8px;
+width:90%;
+text-align:center;
+}
+
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Todo</h1>
+
+<div class="data">
+<input type="text" id='inp' value='' class='inp' />
+
+<button id='btn' class='btn'>Add</button>
+</div>
+<div id="showdata">
+
+</div>
+
+
+</div>
+
+<script>
+
+
+let texts=document.getElementById("inp");
+
+let btn=document.getElementById("btn");
+
+let show=document.getElementById("showdata");
+
+
+
+
+
+
+
+btn.addEventListener("click", add);
+
+
+
+
+
+
+
+
+
+function add(e){
+e.preventDefault();
+
+if(texts.value=='')
+
+{alert('Please Enter Your Data First');}
+
+
+if(!texts.value==''){
+let list=document.createElement("li");
+
+list.innerHTML=`${texts.value}` ;
+
+show.appendChild(list);
+
+
+texts.value='';
+del(list)
+edit(list)
+update(list);
+
+}}
+
+function del(list){
+let btn1=document.createElement("button");
+btn1.innerHTML='Delete';
+list.appendChild(btn1);
+
+btn1.classList.add('btn1');
+btn1.onclick=function(){
+
+list.remove();
+
+}
+
+}
+
+
+function edit(list){
+let btn2=document.createElement("button");
+btn2.innerHTML='Edit';
+list.appendChild(btn2);
+btn2.classList.add('btn2');
+btn2.onclick=function(){
+
+
+
+texts.value=list.firstChild.textContent;
+//list.firstChild.innerText=texts.value;
+//btn2.innerText = "Update";
+
+}
+}
+
+
+
+function update(list){
+let btn3=document.createElement("button");
+btn3.innerHTML='Update';
+btn3.classList.add('btn3');
+list.appendChild(btn3);
+
+
+btn3.onclick=function(){
+btn3.style.padding="6px";
+list.firstChild.textContent=texts.value;
+
+texts.value='';
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
